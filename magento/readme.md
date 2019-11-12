@@ -12,6 +12,8 @@ So I make the dockerfile to download the code when creating the container. Code 
 4. I haven't optimized it ( add health check, add redis, ...) because this one is just a testing stage.
 
 ####### Instruction #######
-1. Change the ENV variable in docker-compose file. If you test on a MAC or Ubuntu desktop, BASE_URL 127.0.0.1 is good enough, however if you run on a server, you should put the server IP instead.
+1. Change the ENV variable in docker-compose file.
+IMPORTANT: If you test on a MAC or Ubuntu desktop, BASE_URL 127.0.0.1 is good enough, however if you run on a server, you should put the server IP instead.
+Magento won't work if you set the wrong BASE_URL.
 2. Just run command: docker-compose up -d ; and it will start well.
 3. Just wipe out the mounted volume/folder to get fresh code again.
