@@ -1,0 +1,42 @@
+
+version: '3'
+services:
+  magento:
+    build:
+      context: .
+    container_name: magento
+    volumes:
+      - ./magento/:/var/www/html/
+    ports:
+      - 80:80
+    environment: #The values below are default ones, if you are not defined
+      BASE_URL: 127.0.0.1 #The url where you will access magento, exp: http://127.0.0.1/magento2
+      # The database parameters must be the same with mariadb service parameter
+      DB_HOST: mariadb
+      DB_NAME: magento
+      DB_USER: magento
+      DB_PASSWORD: magento
+      # The branch to be checked out from magento2 github, however some old branch can't work since some symfony library is not founded.
+      MAGENTO_VERSION: 2.3-develop
+      # Admin password to login to admin control panel at http://{BASE_URL}/magento2/admin
+      ADMIN_PASSWORD: admin123
+    restart: always
+    links:
+      - mariadb
+    networks:
+      - web_servers
+  mariadb:
+    image: mariadb
+    container_name: mariadb
+    restart: always
+    volumes:
+      - ./data:/var/lib/mysql
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_DATABASE: "magento"
+      MYSQL_USER: "magento"
+      MYSQL_PASSWORD: "magento"
+    networks:
+      - web_servers
+networks:
+        web_servers: 
