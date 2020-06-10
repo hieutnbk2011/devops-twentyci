@@ -1,6 +1,9 @@
 version: 2.1
 jobs:
    build:
+     branches:
+        only:
+          - master
      docker:
        - image: circleci/ruby:2.4.1
      steps:
