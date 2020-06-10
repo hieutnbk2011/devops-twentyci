@@ -3,9 +3,9 @@ version: 2.1
 commands:
   setup-cd:
     steps:
-    - run: 
-        name: Configure environment
-        command: 
+      - run: 
+         name: Configure environment
+         command: 
           # install awscli
           curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
           unzip awscliv2.zip
