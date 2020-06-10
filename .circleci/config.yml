@@ -3,29 +3,29 @@ version: 2.1
 commands:
   setup-cd:
     steps:
-      - run: 
-         name: Configure environment
-         command: |
-          # install awscli
-          curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-          unzip awscliv2.zip
-          sudo ./aws/install
-          
-          # install terraform
-          curl -o terraform.zip https://releases.hashicorp.com/terraform/0.12.21/terraform_0.12.21_linux_amd64.zip
-          sudo unzip terraform.zip -d /usr/local/bin/
-          
-          # install helm
-          curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
 
-          # install kubectl
-          curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
-          chmod +x ./kubectl 
-          sudo mv ./kubectl /usr/local/bin/kubectl
 jobs:
    build:
      docker:
        - image: circleci/ruby:2.4.1
      steps:
        - checkout
-       - run: echo "A first hello"
+       - run: 
+          name: Configure environment
+          command: |
+           # install awscli
+           curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+           unzip awscliv2.zip
+           sudo ./aws/install
+          
+           # install terraform
+           curl -o terraform.zip https://releases.hashicorp.com/terraform/0.12.21/terraform_0.12.21_linux_amd64.zip
+           sudo unzip terraform.zip -d /usr/local/bin/
+          
+           # install helm
+           curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+
+           # install kubectl
+           curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
+           chmod +x ./kubectl 
+           sudo mv ./kubectl /usr/local/bin/kubectl
