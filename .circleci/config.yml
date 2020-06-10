@@ -1,9 +1,4 @@
 version: 2.1
-
-commands:
-  setup-cd:
-    steps:
-
 jobs:
    build:
      docker:
